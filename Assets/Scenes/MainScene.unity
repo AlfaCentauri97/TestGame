@@ -1898,6 +1898,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &509119867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4012586435674261642, guid: 212d3398cc3924d4bae628aea59f614b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8438437865656557351}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509119858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ec9eef9d7060040ac4c77d4225667f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &524856079
 GameObject:
   m_ObjectHideFlags: 0
@@ -8265,6 +8277,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7341454816246768413, guid: 068f55f3ccf14fd46b7388b97e22d1b1,
+        type: 3}
+      propertyPath: pickableNeeded
+      value: 
+      objectReference: {fileID: 509119867}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
