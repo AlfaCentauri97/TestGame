@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -8,11 +9,27 @@ public class InventorySlot : MonoBehaviour
     public Image itemIconImage;
     public Image slotSpriteToggle;
     
+    public void OnPointerEnter()
+    {
+        if (slotSpriteToggle != null)
+        {
+            slotSpriteToggle.DOFade(1f, 0.15f);
+        }
+    }
+    
+    public void OnPointerExit()
+    {
+        if (slotSpriteToggle != null)
+        {
+            slotSpriteToggle.DOFade(0f, 0.15f);
+        }
+    }
+
     public void UpdateSlot(Item newItem)
     {
         item = newItem;
         isOccupied = true;
-        
+
         if (newItem != null && newItem.itemIcon != null)
         {
             itemIconImage.enabled = true;
@@ -23,7 +40,7 @@ public class InventorySlot : MonoBehaviour
             ClearSlot();
         }
     }
-    
+
     public void ClearSlot()
     {
         item = null;

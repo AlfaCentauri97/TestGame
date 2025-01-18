@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - Pickable
+  - Lever
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Item
-  - 
-  - 
+  - Lever
+  - Door
   - 
   - 
   - 

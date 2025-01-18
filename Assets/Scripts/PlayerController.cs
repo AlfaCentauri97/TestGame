@@ -24,13 +24,18 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private float currentSpeed;
     private Vector3 velocity;
     private bool isRunning;
-
-    private Pickable currentPickable;
+    
     private Pickable pickedUpPickable;
+    
+    private Pickable currentPickable;
     private Item currentItem;
+    private Lever currentLever;
+    private Door currentDoor;
 
     private Pickable previousPickable;
     private Item previousItem;
+    private Lever previousLever;
+    private Door previousDoor;
     
     public bool playerLock = false;
     private void Start()
@@ -122,12 +127,17 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
         currentPickable = null;
         currentItem = null;
+        currentLever = null;
+        currentDoor = null;
 
         if (Physics.Raycast(ray, out hit, rayDistance, layerMask))
         {
             Pickable pickable = hit.collider.GetComponent<Pickable>();
             Item item = hit.collider.GetComponent<Item>();
+            Lever lever = hit.collider.GetComponent<Lever>();
+            Door door = hit.collider.GetComponent<Door>();
             
+            //PICKABLE
             if (pickable != null)
             {
                 currentPickable = pickable;
@@ -146,7 +156,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
                 previousPickable.OutlineAnimation(false);
                 previousPickable = null;
             }
-            
+            //ITEM
             if (item != null)
             {
                 currentItem = item;
@@ -165,12 +175,35 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
                 previousItem.OutlineAnimation(false);
                 previousItem = null;
             }
+            //LEVER
+            if (lever != null)
+            {
+                currentLever = lever;
+
+                if (previousLever != currentLever)
+                {
+                    if (previousLever != null)
+                    {
+                        previousLever.OutlineAnimation(false);
+                    }
+
+                    currentLever.OutlineAnimation(true);
+                }
+
+                previousLever = currentLever;
+            }
+            else if (previousLever != null)
+            {
+                previousLever.OutlineAnimation(false);
+                previousLever = null;
+            }
+            //DOOR
             
             if (currentPickable != null)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
             }
-            else if (currentItem != null)
+            else if (currentItem != null || currentLever != null)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red);
             }
@@ -192,6 +225,12 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
                 previousItem.OutlineAnimation(false);
                 previousItem = null;
             }
+            
+            if (previousLever != null)
+            {
+                previousLever.OutlineAnimation(false);
+                previousLever = null;
+            }
 
             Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.blue);
         }
@@ -207,6 +246,15 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         {
             currentItem.PickUp();
         }
+        else if (Input.GetMouseButtonDown(0) && currentLever != null)
+        {
+            currentLever.Interact();
+        }
+        else if (Input.GetMouseButtonDown(0) && currentDoor != null)
+        {
+            
+        }
+        
         
         if (Input.GetMouseButtonUp(0) && pickedUpPickable != null)
         {
