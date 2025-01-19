@@ -5,6 +5,12 @@ using UnityEngine;
 public class GMgr : SingletonMonoBehaviour<GMgr>
 {
     public CursorController cursorController;
+    public LoadingScreenController loadingScreenController;
+    
+    void Awake()
+    {
+        OnLevelLoaded();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -20,5 +26,18 @@ public class GMgr : SingletonMonoBehaviour<GMgr>
             cursorController.ToggleCursor();
             PlayerController.Instance.TogglePlayerLock();
         }
+    }
+
+    private void OnLevelLoaded()
+    {
+        PlayerController.Instance.TogglePlayerLock();
+        loadingScreenController.ToggleLoadingScreen(true);
+        StartCoroutine(UnlockPlayer());
+    }
+    
+    private IEnumerator UnlockPlayer()
+    {
+        yield return new WaitForSeconds(loadingScreenController.loadingDuration + 1f);
+        PlayerController.Instance.TogglePlayerLock();
     }
 }

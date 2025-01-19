@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: PLATFORM_BUTTON
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPickableNecessary: 1
   pickableNeeded: {fileID: 0}
+  door: {fileID: 0}
 --- !u!65 &785532331519881177
 BoxCollider:
   m_ObjectHideFlags: 0

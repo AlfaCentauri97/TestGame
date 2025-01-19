@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 0
   m_Name: PICKABLE
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickableType: 0
+  outline: {fileID: 0}
+  isPickedUp: 0
 --- !u!1 &7592487828786455411
 GameObject:
   m_ObjectHideFlags: 0
