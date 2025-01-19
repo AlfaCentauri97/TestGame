@@ -9,6 +9,9 @@ public class GMgr : SingletonMonoBehaviour<GMgr>
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            MenuMgr.Instance.ToggleMenu();
+            cursorController.ToggleCursor();
+            PlayerController.Instance.TogglePlayerLock();
             Debug.Log("Game Paused.");
         }
         if (Input.GetKeyDown(KeyCode.E))

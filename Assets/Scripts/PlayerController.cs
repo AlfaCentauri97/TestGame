@@ -19,6 +19,10 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     
     [Header("Ray Settings")]
     public float rayDistance = 100f;
+    
+    [Header("Carry Position Settings")]
+    public float carryVerticalSensitivity = 1f;
+    private float carryVerticalOffset = 0f;
 
     private float verticalLookRotation;
     private float currentSpeed;
@@ -241,6 +245,15 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         {
             pickedUpPickable = currentPickable;
             pickedUpPickable.PickedUp(carryPosition);
+            carryVerticalOffset = 0f;
+        }
+        else if (pickedUpPickable != null)
+        {
+            float mouseY = Input.GetAxis("Mouse Y") * carryVerticalSensitivity;
+            carryVerticalOffset = Mathf.Clamp(carryVerticalOffset + mouseY, 0f, 1f);
+            Vector3 newPosition = carryPosition.localPosition;
+            newPosition.y = carryVerticalOffset;
+            carryPosition.localPosition = newPosition;
         }
         else if (Input.GetMouseButtonDown(0) && currentItem != null)
         {
