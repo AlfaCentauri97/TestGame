@@ -13,6 +13,11 @@ public class InventoryMgr : SingletonMonoBehaviour<InventoryMgr>
         InventoryUI.gameObject.SetActive(!isActive);
     }
     
+    public void ToggleInventory(bool isActive)
+    {
+        InventoryUI.gameObject.SetActive(isActive);
+    }
+    
     public void AddItemToInventory(Item item)
     {
         foreach (var slot in Inventory.InventorySlots)

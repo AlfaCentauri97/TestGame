@@ -8,7 +8,7 @@ public class CursorController : MonoBehaviour
 
     void Update()
     {
-        if (isCursorActive)
+        /*if (isCursorActive)
         {
             Vector2 mousePosition = Input.mousePosition;
             
@@ -21,14 +21,13 @@ public class CursorController : MonoBehaviour
             );
             
             cursor.localPosition = canvasPosition;
-        }
+        }*/
     }
 
     public void ToggleCursor()
     {
         isCursorActive = !isCursorActive;
-        cursorObject.SetActive(isCursorActive);
-        
+
         if (isCursorActive)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -40,4 +39,21 @@ public class CursorController : MonoBehaviour
             Cursor.visible = false;
         }
     }
+    
+    public void ToggleCursor(bool isActive)
+    {
+        isCursorActive = isActive;
+
+        if (isCursorActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
 }

@@ -15,14 +15,26 @@ public class GMgr : SingletonMonoBehaviour<GMgr>
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            MenuMgr.Instance.ToggleMenu();
+            cursorController.ToggleCursor(false);
+            InventoryMgr.Instance.ToggleInventory(false);
+            PlayerController.Instance.TogglePlayerLock(false);
+            
             cursorController.ToggleCursor();
             PlayerController.Instance.TogglePlayerLock();
+            MenuMgr.Instance.ToggleMenu();
             Debug.Log("Game Paused.");
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        
+        if (Input.GetKeyDown(KeyCode.E) && !MenuMgr.Instance.isActivated)
         {
             InventoryMgr.Instance.ToggleInventory();
+            cursorController.ToggleCursor();
+            PlayerController.Instance.TogglePlayerLock();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q) && !MenuMgr.Instance.isActivated)
+        {
+            QuestMgr.Instance.ToggleQuestLog();
             cursorController.ToggleCursor();
             PlayerController.Instance.TogglePlayerLock();
         }

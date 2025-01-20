@@ -35,6 +35,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private Item currentItem;
     private Lever currentLever;
     private Door currentDoor;
+    private NPCController currentNPC;
 
     private Pickable previousPickable;
     private Item previousItem;
@@ -67,6 +68,11 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     public void TogglePlayerLock()
     {
         playerLock = !playerLock;
+    }
+    
+    public void TogglePlayerLock(bool isLocked)
+    {
+        playerLock = isLocked;
     }
     
     private void HandleMovement()
@@ -133,6 +139,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         currentItem = null;
         currentLever = null;
         currentDoor = null;
+        currentNPC = null;
 
         if (Physics.Raycast(ray, out hit, rayDistance, layerMask))
         {
@@ -140,7 +147,16 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             Item item = hit.collider.GetComponent<Item>();
             Lever lever = hit.collider.GetComponent<Lever>();
             Door door = hit.collider.GetComponent<Door>();
-            
+            NPCController npc = hit.collider.GetComponent<NPCController>();
+            //NPC
+            if (npc != null)
+            {
+                currentNPC = npc;
+            }
+            else if (currentNPC != null)
+            {
+                currentNPC = null;
+            }
             //PICKABLE
             if (pickable != null)
             {
@@ -203,7 +219,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             }
             //DOOR
             
-            if (currentPickable != null)
+            if (currentPickable != null || currentNPC != null)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
             }
@@ -263,11 +279,15 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         {
             currentLever.Interact();
         }
+        else if (Input.GetMouseButtonDown(0) && currentNPC != null)
+        {
+            Debug.Log($"Interacting with NPC: {currentNPC.name}");
+            currentNPC.Interact();
+        }
         else if (Input.GetMouseButtonDown(0) && currentDoor != null)
         {
             
         }
-        
         
         if (Input.GetMouseButtonUp(0) && pickedUpPickable != null)
         {
