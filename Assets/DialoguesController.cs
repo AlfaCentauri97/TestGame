@@ -12,11 +12,14 @@ public class DialoguesController : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image dialogueImage;
 
+    private List<string> dialogueHolder;
+    private NPCController currentNPC;
+    private int index;
     private void Update()
     {
         if (isActivated && Input.GetMouseButtonDown(0))
         {
-            ToggleDialogues();
+            NextDialogue(dialogueHolder);
         }
     }
 
@@ -26,10 +29,28 @@ public class DialoguesController : MonoBehaviour
         DialoguesUI.gameObject.SetActive(isActivated);
     }
 
-    public void InitializeDialogue(string npcDialogueText, Sprite npcDialogueSprite)
+    public void InitializeDialogue(List<string> npcDialogueText, Sprite npcDialogueSprite, NPCController NPC)
     {
-        dialogueText.text = npcDialogueText;
+        index = 0;
+        dialogueText.text = npcDialogueText[index];
         dialogueImage.sprite = npcDialogueSprite;
+        dialogueHolder = npcDialogueText;
+        currentNPC = NPC;
         Debug.Log("Dialogue initialized.");
+    }
+    
+    public void NextDialogue(List<string> npcDialogueText)
+    {
+
+        if (index < npcDialogueText.Count - 1)
+        {
+            index++;
+            dialogueText.text = npcDialogueText[index];
+        }
+        else
+        {
+            ToggleDialogues();
+            currentNPC.isDialoguesActive = false;
+        }
     }
 }

@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1427802604581137840}
   - component: {fileID: 929117393470654898}
   - component: {fileID: 6315309953178687896}
+  - component: {fileID: 8859105225780790144}
   m_Layer: 9
   m_Name: TriggerZone
   m_TagString: Untagged
@@ -235,6 +236,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   isFollowingPlayer: 1
+--- !u!114 &8859105225780790144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615968699557752785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027d54d1f2649e64fa6e12af1704aad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8441463660162996536
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73224a0fcaa0592448396e08cd5387b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcText: Poka dupe
+  npcTexts: []
   npcSprite: {fileID: 21300000, guid: 0298898058fd148d7ba325676b88fb60, type: 3}
+  isDialoguesActive: 0
 --- !u!136 &2912925198333601491
 CapsuleCollider:
   m_ObjectHideFlags: 0

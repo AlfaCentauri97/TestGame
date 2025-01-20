@@ -9,6 +9,6 @@ public class DialoguesMgr : SingletonMonoBehaviour<DialoguesMgr>
     public void StartDialogue(NPCController npcController)
     {
         dialoguesController.ToggleDialogues();
-        dialoguesController.InitializeDialogue(npcController.npcText, npcController.npcSprite);
+        dialoguesController.InitializeDialogue(npcController.npcTexts, npcController.npcSprite, npcController);
     }
 }

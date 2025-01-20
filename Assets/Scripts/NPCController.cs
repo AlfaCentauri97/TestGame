@@ -5,12 +5,18 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     [TextArea]
-    public string npcText;
+    public List<string> npcTexts;
     public Sprite npcSprite;
 
+    public bool isDialoguesActive = false;
     public void Interact()
     {
         Debug.Log("Interacting with NPC.");
-        DialoguesMgr.Instance.StartDialogue(this);
+
+        if(!isDialoguesActive)
+        {
+            isDialoguesActive = true;
+            DialoguesMgr.Instance.StartDialogue(this);
+        }
     }
 }
