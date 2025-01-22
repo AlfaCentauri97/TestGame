@@ -174,7 +174,7 @@ MonoBehaviour:
   item: {fileID: 0}
   isOccupied: 0
   itemIconImage: {fileID: 473927550484917554}
-  slotSpriteToggle: {fileID: 0}
+  slotSpriteToggle: {fileID: 5056926410618825138}
 --- !u!1 &4526122622744514710
 GameObject:
   m_ObjectHideFlags: 0

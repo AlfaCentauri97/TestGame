@@ -16,6 +16,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     public CharacterController characterController;
     public Transform playerCamera;
     public Transform carryPosition;
+    public PlayerHandsController playerHandsController;
     
     [Header("Ray Settings")]
     public float rayDistance = 100f;
@@ -120,14 +121,21 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-
+        
         transform.Rotate(Vector3.up * mouseX);
-
+        
         verticalLookRotation -= mouseY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
-
         playerCamera.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
+        
+        if (playerHandsController != null)
+        {
+            /*playerHandsController.hands[0].transform.rotation = playerCamera.rotation;
+            playerHandsController.hands[1].transform.rotation = playerCamera.rotation;*/
+        }
     }
+
+
     private void CastAndDrawRay()
     {
         int layerMask = ~LayerMask.GetMask("Player");

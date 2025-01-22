@@ -13,7 +13,7 @@ public class DialoguesRange : MonoBehaviour
     {
         if (other.CompareTag("Player") && npcController.isDialoguesActive)
         {
-            DialoguesMgr.Instance.dialoguesController.ToggleDialogues();
+            DialoguesMgr.Instance.dialoguesController.ToggleDialogues(false);
             npcController.isDialoguesActive = false;
         }
     }

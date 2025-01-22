@@ -7,8 +7,9 @@ public class NPCController : MonoBehaviour
     [TextArea]
     public List<string> npcTexts;
     public Sprite npcSprite;
+    public bool isQuestGiver = false;
 
-    public bool isDialoguesActive = false;
+    [HideInInspector]public bool isDialoguesActive = false;
     public void Interact()
     {
         Debug.Log("Interacting with NPC.");
